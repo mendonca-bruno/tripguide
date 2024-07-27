@@ -1,12 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadNotes();
     populateSectionSelect();
-    showAllSections();
+    showSection('home'); // Exibe apenas a seção inicial (home)
 });
 
 function showSection(sectionId) {
-    document.getElementById('home').classList.remove('show');
-    document.getElementById(sectionId).classList.add('show');
+    // Oculta todas as seções
+    const sections = document.querySelectorAll('.section, .home');
+    sections.forEach(section => {
+        section.classList.remove('show');
+    });
+
+    // Exibe a seção especificada
+    const sectionToShow = document.getElementById(sectionId);
+    if (sectionToShow) {
+        sectionToShow.classList.add('show');
+    }
 }
 
 function addNote() {

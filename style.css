@@ -24,7 +24,8 @@ h1, h2 {
 .section.show, .home.show, .add-notes-container.show {
     display: block;
     opacity: 1;
-    max-height: 1000px;
+    max-height: none; /* Alterado para garantir que todo o conteúdo seja exibido */
+    overflow: visible;
 }
 .section-number {
     font-weight: bold;
