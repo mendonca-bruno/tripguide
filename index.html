@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Conversação para Viagem</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .section, .home, .add-notes-container {
+            margin-bottom: 20px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease, max-height 0.5s ease;
+        }
+        .section.show, .home.show, .add-notes-container.show {
+            display: block;
+            opacity: 1;
+            max-height: 1000px;
+        }
+        .section-number {
+            font-weight: bold;
+            color: #555;
+        }
+        .keywords, .examples {
+            background: #e7f3fe;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .add-note-button-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .feedback {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: green;
+        }
+        .delete-button {
+            color: red;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .home {
+            text-align: center;
+        }
+        .home button {
+            max-width: 200px;
+            margin: 10px auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="home show" id="home">
+            <h1>Guia de Conversação para Viagem</h1>
+            <button onclick="showSection('imigration')">Imigração</button>
+        </div>
+        <div class="section" id="imigration">
+            <h1>Imigração</h1>
+            <div class="add-note-button-container">
+                <button onclick="toggleAddNoteForm()">Adicionar Nova Nota</button>
+            </div>
+            <div class="add-notes-container" id="addNotesContainer">
+                <select id="sectionSelect">
+                    <!-- Opções serão preenchidas dinamicamente -->
+                </select>
+                <input type="text" id="newKeyword" placeholder="Nova Palavra-chave">
+                <input type="text" id="newNote" placeholder="Nova Nota">
+                <button onclick="addNote()">Adicionar Nota</button>
+                <button onclick="toggleAddNoteForm()">Cancelar</button>
+            </div>
+            <div id="content">
+                <div class="section-content" id="section1">
+                    <h2><span class="section-number">1. </span>Cumprimentos e Início da Conversa</h2>
+                    <div class="keywords">
+                        <strong>Palavras-chave:</strong> morning/afternoon/evening (manhã/tarde/noite), How are you? (Como você está?)
+                    </div>
+                    <div class="examples">
+                        <strong>Perguntas Comuns:</strong> Good morning/afternoon/evening. How are you today?
+                        <br>
+                        <strong>Respostas Exemplares:</strong> Good morning/afternoon/evening. I’m fine, thank you. How are you?
+                    </div>
+                </div>
+                <div class="section-content" id="section2">
+                    <h2><span class="section-number">2. </span>Motivo da Viagem</h2>
+                    <div class="keywords">
+                        <strong>Palavras-chave:</strong> purpose (propósito), visit (visita), business (negócios), pleasure (lazer)
+                    </div>
+                    <div class="examples">
+                        <strong>Perguntas Comuns:</strong> What is the purpose of your visit? Are you here for business or pleasure?
+                        <br>
+                        <strong>Respostas Exemplares:</strong> I am here for tourism. I am visiting friends/family. I am here for business. I will be attending a conference.
+                    </div>
+                </div>
+                <div class="section-content" id="section3">
+                    <h2><span class="section-number">3. </span>Duração da Estadia</h2>
+                    <div class="keywords">
+                        <strong>Palavras-chave:</strong> How long (quanto tempo), staying (ficando), UK (Reino Unido), When (quando), leaving (partindo)
+                    </div>
+                    <div class="examples">
+                        <strong>Perguntas Comuns:</strong> How long will you be staying in the UK? When are you leaving?
+                        <br>
+                        <strong>Respostas Exemplares:</strong> I will be staying for [number] days/weeks. I will be here for a week/two weeks/etc. I am leaving on [date].
+                    </div>
+                </div>
+                <div class="section-content" id="section4">
+                    <h2><span class="section-number">4. </span>Local de Hospedagem</h2>
+                    <div class="keywords">
+                        <strong>Palavras-chave:</strong> Where (onde), staying (ficando), reservation (reserva)
+                    </div>
+                    <div class="examples">
+                        <strong>Perguntas Comuns:</strong> Where will you be staying? Do you have a reservation?
+                        <br>
+                        <strong>Respostas Exemplares:</strong> I will be staying at [name of hotel]. I will be staying with friends/family at [address]. Yes, I have a reservation at [name of hotel].
+                    </div>
+                </div>
+                <div class="section-content" id="section5">
+                    <h2><span class="section-number">5. </span>Plano de Viagem</h2>
+                    <div class="keywords">
+                        <strong>Palavras-chave:</strong> plans (planos), while (enquanto), here (aqui), travel (viagem), itinerary (itinerário)
+                    </div>
+                    <div class="examples">
+                        <strong>Perguntas Comuns:</strong> What are your plans while you are here? Do you have a travel itinerary?
+                        <br>
+                        <strong>Respostas Exemplares:</strong> I plan to visit [places]. I will be sightseeing in London. Yes, I have a tour planned.
+                    </div>
+                </div>
+                <div class="section-content" id="section6">
+                    <h2><span class="section-number">6. </span>Detalhes do Voo</h2>
+                    <div class="keywords">
+                        <strong>Palavras-chave:</strong> return ticket (bilhete de retorno), flight (voo), arrive (chegar)
+                    </div>
+                    <div class="examples">
+                        <strong>Perguntas Comuns:</strong> Can I see your return ticket? What flight did you arrive on?
+                        <br>
+                        <strong>Respostas Exemplares:</strong> Yes, here is my return ticket. I arrived on flight [flight number] from [city/country].
+                    </div>
+                </div>
+                <div class="section-content" id="section7">
+                    <h2><span class="section-number">7. </span>Recursos Financeiros</h2>
+                    <div class="keywords">
+                        <strong>Palavras-chave:</strong> How much (quanto), money (dinheiro), stay (estadia), enough funds (fundos suficientes), support yourself (sustentar-se), during your stay (durante sua estadia)
+                    </div>
+                    <div class="examples">
+                        <strong>Perguntas Comuns:</strong> How much money do you have for your stay? Do you have enough funds to support yourself during your stay?
+                        <br>
+                        <strong>Respostas Exemplares:</strong> I have [amount] in cash and a credit card. Yes, I have enough funds for my stay.
+                    </div>
+                </div>
+                <div class="section-content" id="section8">
+                    <h2><span class="section-number">8. </span>Confirmação de Passagem de Volta</h2>
+                    <div class="keywords">
+                        <strong>Palavras-chave:</strong> return ticket (bilhete de retorno), return flight (voo de retorno), When (quando)
+                    </div>
+                    <div class="examples">
+                        <strong>Perguntas Comuns:</strong> Do you have a return ticket? When is your return flight?
+                        <br>
+                        <strong>Respostas Exemplares:</strong> Yes, I have a return ticket booked. My return flight is on [date].
+                    </div>
+                </div>
+                <div class="section-content" id="section9">
+                    <h2><span class="section-number">9. </span>Histórico de Viagens</h2>
+                    <div class="keywords">
+                        <strong>Palavras-chave:</strong> been (estado), UK (Reino Unido), before (antes), first visit (primeira visita)
+                    </div>
+                    <div class="examples">
+                        <strong>Perguntas Comuns:</strong> Have you been to the UK before? Is this your first visit to the UK?
+                        <br>
+                        <strong>Respostas Exemplares:</strong> Yes, I have been here before. No, this is my first visit.
+                    </div>
+                </div>
+                <div class="section-content" id="section10">
+                    <h2><span class="section-number">10. </span>Outras Perguntas Comuns</h2>
+                    <div class="keywords">
+                        <strong>Palavras-chave:</strong> travel insurance (seguro de viagem), know (conhece), anyone (alguém), UK (Reino Unido)
+                    </div>
+                    <div class="examples">
+                        <strong>Perguntas Comuns:</strong> Do you have travel insurance? Do you know anyone in the UK?
+                        <br>
+                        <strong>Respostas Exemplares:</strong> Yes, I have travel insurance. Yes, I have friends/family here.
+                    </div>
+                </div>
+            </div>
+            <div class="feedback" id="feedbackMessage">Nota/Palavra-chave adicionada com sucesso!</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadNotes();
+            populateSectionSelect();
+            showAllSections();
+        });
+
+        function showSection(sectionId) {
+            document.getElementById('home').classList.remove('show');
+            document.getElementById(sectionId).classList.add('show');
+        }
+
+        function addNote() {
+            const sectionNumber = document.getElementById('sectionSelect').value;
+            const newKeyword = document.getElementById('newKeyword').value.trim();
+            const newNote = document.getElementById('newNote').value.trim();
+            const section = document.getElementById(`section${sectionNumber}`);
+
+            if (section && (newKeyword || newNote)) {
+                if (newKeyword) {
+                    const keywordDiv = section.querySelector('.keywords');
+                    const newKeywordSpan = document.createElement('span');
+                    newKeywordSpan.textContent = `, ${newKeyword}`;
+                    const deleteButton = createDeleteButton(newKeywordSpan, sectionNumber, newKeyword, 'keyword');
+                    newKeywordSpan.appendChild(deleteButton);
+                    keywordDiv.appendChild(newKeywordSpan);
+                    saveNoteToLocalStorage(sectionNumber, newKeyword, 'keyword');
+                }
+
+                if (newNote) {
+                    const examplesDiv = section.querySelector('.examples');
+                    const newNoteDiv = document.createElement('div');
+                    newNoteDiv.innerHTML = `<strong>Nota:</strong> ${newNote}`;
+                    const deleteButton = createDeleteButton(newNoteDiv, sectionNumber, newNote, 'note');
+                    newNoteDiv.appendChild(deleteButton);
+                    examplesDiv.appendChild(newNoteDiv);
+                    saveNoteToLocalStorage(sectionNumber, newNote, 'note');
+                }
+
+                showFeedbackMessage('Nota/Palavra-chave adicionada com sucesso!');
+            } else {
+                showFeedbackMessage('Por favor, insira um número de seção válido e pelo menos uma palavra-chave ou nota.', true);
+            }
+
+            document.getElementById('newKeyword').value = '';
+            document.getElementById('newNote').value = '';
+
+            toggleAddNoteForm();
+            updateDeleteButtons();
+        }
+
+        function createDeleteButton(parentElement, sectionNumber, value, type) {
+            const deleteButton = document.createElement('i');
+            deleteButton.className = 'fas fa-trash delete-button';
+            deleteButton.onclick = function() {
+                console.log(`Delete button clicked: sectionNumber=${sectionNumber}, value=${value}, type=${type}`);
+                parentElement.remove();
+                removeNoteFromLocalStorage(sectionNumber, value, type);
+            };
+            return deleteButton;
+        }
+
+        function toggleAddNoteForm() {
+            const addNotesContainer = document.getElementById('addNotesContainer');
+            addNotesContainer.classList.toggle('show');
+        }
+
+        function showFeedbackMessage(message, isError = false) {
+            const feedbackMessage = document.getElementById('feedbackMessage');
+            feedbackMessage.textContent = message;
+            feedbackMessage.style.color = isError ? 'red' : 'green';
+            feedbackMessage.style.display = 'block';
+            setTimeout(() => {
+                feedbackMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        function saveNoteToLocalStorage(sectionNumber, value, type) {
+            const key = `section${sectionNumber}`;
+            let notes = JSON.parse(localStorage.getItem(key)) || { keywords: [], notes: [] };
+
+            if (type === 'keyword') {
+                notes.keywords.push(value);
+            } else if (type === 'note') {
+                notes.notes.push(value);
+            }
+
+            localStorage.setItem(key, JSON.stringify(notes));
+            console.log(`Saved to localStorage: ${key}`, notes);
+        }
+
+        function removeNoteFromLocalStorage(sectionNumber, value, type) {
+            const key = `section${sectionNumber}`;
+            let notes = JSON.parse(localStorage.getItem(key));
+
+            if (notes) {
+                if (type === 'keyword') {
+                    notes.keywords = notes.keywords.filter(keyword => keyword.trim() !== value.trim());
+                } else if (type === 'note') {
+                    notes.notes = notes.notes.filter(note => note.trim() !== value.trim());
+                }
+                localStorage.setItem(key, JSON.stringify(notes));
+                console.log(`Removed from localStorage: ${key}`, notes);
+            }
+        }
+
+        function loadNotes() {
+            const sections = document.querySelectorAll('.section-content');
+
+            sections.forEach(section => {
+                const sectionNumber = section.id.replace('section', '');
+                const key = `section${sectionNumber}`;
+                const notes = JSON.parse(localStorage.getItem(key));
+
+                if (notes) {
+                    const keywordDiv = section.querySelector('.keywords');
+                    const examplesDiv = section.querySelector('.examples');
+
+                    notes.keywords.forEach(keyword => {
+                        const newKeywordSpan = document.createElement('span');
+                        newKeywordSpan.textContent = `, ${keyword}`;
+                        const deleteButton = createDeleteButton(newKeywordSpan, sectionNumber, keyword, 'keyword');
+                        newKeywordSpan.appendChild(deleteButton);
+                        keywordDiv.appendChild(newKeywordSpan);
+                    });
+
+                    notes.notes.forEach(note => {
+                        const newNoteDiv = document.createElement('div');
+                        newNoteDiv.innerHTML = `<strong>Nota:</strong> ${note}`;
+                        const deleteButton = createDeleteButton(newNoteDiv, sectionNumber, note, 'note');
+                        newNoteDiv.appendChild(deleteButton);
+                        examplesDiv.appendChild(newNoteDiv);
+                    });
+
+                    if (notes.keywords.length > 0 || notes.notes.length > 0) {
+                        section.classList.add('show');
+                    }
+                }
+            });
+            console.log('Notes loaded from localStorage');
+        }
+
+        function populateSectionSelect() {
+            const sectionSelect = document.getElementById('sectionSelect');
+            sectionSelect.innerHTML = ''; // Clear existing options
+            const sections = document.querySelectorAll('.section-content');
+
+            sections.forEach(section => {
+                const sectionNumber = section.id.replace('section', '');
+                const sectionTitle = section.querySelector('h2').textContent.trim();
+                const option = document.createElement('option');
+                option.value = sectionNumber;
+                option.textContent = `${sectionNumber}. ${sectionTitle}`;
+                sectionSelect.appendChild(option);
+            });
+        }
+
+        function showAllSections() {
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => {
+                section.classList.add('show');
+            });
+        }
+
+        function updateDeleteButtons() {
+            const deleteButtons = document.querySelectorAll('.delete-button');
+            deleteButtons.forEach(deleteButton => {
+                const parentElement = deleteButton.parentElement;
+                const sectionNumber = parentElement.closest('.section-content').id.replace('section', '');
+                const value = parentElement.textContent.replace(deleteButton.textContent, '').trim();
+                const type = parentElement.closest('.keywords') ? 'keyword' : 'note';
+                deleteButton.onclick = function() {
+                    console.log(`Delete button clicked: sectionNumber=${sectionNumber}, value=${value}, type=${type}`);
+                    parentElement.remove();
+                    removeNoteFromLocalStorage(sectionNumber, value, type);
+                };
+            });
+        }
+    </script>
+</body>
+</html>
