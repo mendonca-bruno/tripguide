@@ -4,43 +4,97 @@ body {
     padding: 20px;
     background-color: #f4f4f4;
 }
+
 .container {
-    max-width: 600px;
+    display: flex;
+    max-width: 1200px;
     margin: auto;
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+.home {
+    text-align: center;
+}
+
+.section {
+    display: none;
+}
+
+.section.show {
+    display: flex;
+}
+
+.sidebar {
+    flex: 1;
+    max-width: 200px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-right: 1px solid #ddd;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.content {
+    flex: 3;
+    padding: 20px;
+    position: relative;
+}
+
 h1, h2 {
     color: #333;
 }
-.section, .home, .add-notes-container {
+
+.section-content {
     margin-bottom: 20px;
+}
+
+.add-notes-container {
     display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease, max-height 0.5s ease;
 }
-.section.show, .home.show, .add-notes-container.show {
+
+.add-notes-container.show {
     display: block;
-    opacity: 1;
-    max-height: none; /* Alterado para garantir que todo o conteúdo seja exibido */
-    overflow: visible;
 }
-.section-number {
-    font-weight: bold;
-    color: #555;
+
+.sidebar h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
 .keywords, .examples {
     background: #e7f3fe;
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 10px;
 }
+
 .add-note-button-container {
     margin-bottom: 20px;
     text-align: center;
 }
+
 input[type="text"], select {
     width: 100%;
     padding: 10px;
@@ -48,6 +102,7 @@ input[type="text"], select {
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+
 button {
     width: 100%;
     padding: 10px;
@@ -58,9 +113,11 @@ button {
     cursor: pointer;
     margin-bottom: 10px;
 }
+
 button:hover {
     background: #0056b3;
 }
+
 .feedback {
     display: none;
     margin-top: 20px;
@@ -68,16 +125,37 @@ button:hover {
     font-weight: bold;
     color: green;
 }
+
 .delete-button {
     color: red;
     cursor: pointer;
     margin-left: 10px;
 }
-.home {
-    text-align: center;
+
+.menu-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #007bff;
 }
-.home button {
-    max-width: 200px;
-    margin: 10px auto;
+
+.menu-icon:hover {
+    color: #0056b3;
+}
+
+.center-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 20px auto;
     display: block;
+    width: auto;
+}
+
+.add-notes-container .center-button {
+    margin: 10px auto;
+    padding: 8px 16px;
+    font-size: 14px;
 }

@@ -8,138 +8,156 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="home show" id="home">
-            <h1>Guia de Conversação para Viagem</h1>
-            <button onclick="showSection('imigration')">Imigração</button>
-        </div>
-        <div class="section" id="imigration">
-            <h1>Imigração</h1>
-            <div class="add-note-button-container">
-                <button onclick="toggleAddNoteForm()">Adicionar Nova Nota</button>
+    <div id="home" class="home show">
+        <h1>Guia de Conversação para Viagem</h1>
+        <button class="center-button" onclick="showSection('imigration')">Imigração</button>
+    </div>
+    <div id="imigration" class="section">
+        <div class="container">
+            <div class="sidebar">
+                <h2>Sumário</h2>
+                <ul id="summary">
+                    <li><a href="#section1">Cumprimentos e Início da Conversa</a></li>
+                    <li><a href="#section2">Motivo da Viagem</a></li>
+                    <li><a href="#section3">Duração da Estadia</a></li>
+                    <li><a href="#section4">Local de Hospedagem</a></li>
+                    <li><a href="#section5">Plano de Viagem</a></li>
+                    <li><a href="#section6">Detalhes do Voo</a></li>
+                    <li><a href="#section7">Recursos Financeiros</a></li>
+                    <li><a href="#section8">Confirmação de Passagem de Volta</a></li>
+                    <li><a href="#section9">Histórico de Viagens</a></li>
+                    <li><a href="#section10">Outras Perguntas Comuns</a></li>
+                </ul>
             </div>
-            <div class="add-notes-container" id="addNotesContainer">
-                <select id="sectionSelect">
-                    <!-- Opções serão preenchidas dinamicamente -->
-                </select>
-                <input type="text" id="newKeyword" placeholder="Nova Palavra-chave">
-                <input type="text" id="newNote" placeholder="Nova Nota">
-                <button onclick="addNote()">Adicionar Nota</button>
-                <button onclick="toggleAddNoteForm()">Cancelar</button>
+            <div class="content">
+                <div class="menu-icon" onclick="showSection('home')">
+                    <i class="fas fa-bars"></i> Menu
+                </div>
+                <h1>Imigração</h1>
+                <div class="add-note-button-container">
+                    <button class="center-button" onclick="toggleAddNoteForm()">Adicionar Nova Nota</button>
+                </div>
+                <div class="add-notes-container" id="addNotesContainer">
+                    <select id="sectionSelect"></select>
+                    <input type="text" id="newKeyword" placeholder="Nova Palavra-chave">
+                    <input type="text" id="newNote" placeholder="Nova Nota">
+                    <button class="center-button" onclick="addNote()">Adicionar Nota</button>
+                    <button class="center-button" onclick="toggleAddNoteForm()">Cancelar</button>
+                </div>
+                <div id="content">
+                    <div class="section-content" id="section1">
+                        <h2><span class="section-number">1. </span>Cumprimentos e Início da Conversa</h2>
+                        <div class="keywords">
+                            <strong>Palavras-chave:</strong> morning/afternoon/evening (manhã/tarde/noite), How are you? (Como você está?)
+                        </div>
+                        <div class="examples">
+                            <strong>Perguntas Comuns:</strong> Good morning/afternoon/evening. How are you today?
+                            <br>
+                            <strong>Respostas Exemplares:</strong> Good morning/afternoon/evening. I’m fine, thank you. How are you?
+                        </div>
+                    </div>
+                    <div class="section-content" id="section2">
+                        <h2><span class="section-number">2. </span>Motivo da Viagem</h2>
+                        <div class="keywords">
+                            <strong>Palavras-chave:</strong> purpose (propósito), visit (visita), business (negócios), pleasure (lazer)
+                        </div>
+                        <div class="examples">
+                            <strong>Perguntas Comuns:</strong> What is the purpose of your visit? Are you here for business or pleasure?
+                            <br>
+                            <strong>Respostas Exemplares:</strong> I am here for tourism. I am visiting friends/family. I am here for business. I will be attending a conference.
+                        </div>
+                    </div>
+                    <div class="section-content" id="section3">
+                        <h2><span class="section-number">3. </span>Duração da Estadia</h2>
+                        <div class="keywords">
+                            <strong>Palavras-chave:</strong> How long (quanto tempo), staying (ficando), UK (Reino Unido), When (quando), leaving (partindo)
+                        </div>
+                        <div class="examples">
+                            <strong>Perguntas Comuns:</strong> How long will you be staying in the UK? When are you leaving?
+                            <br>
+                            <strong>Respostas Exemplares:</strong> I will be staying for [number] days/weeks. I will be here for a week/two weeks/etc. I am leaving on [date].
+                        </div>
+                    </div>
+                    <div class="section-content" id="section4">
+                        <h2><span class="section-number">4. </span>Local de Hospedagem</h2>
+                        <div class="keywords">
+                            <strong>Palavras-chave:</strong> Where (onde), staying (ficando), reservation (reserva)
+                        </div>
+                        <div class="examples">
+                            <strong>Perguntas Comuns:</strong> Where will you be staying? Do you have a reservation?
+                            <br>
+                            <strong>Respostas Exemplares:</strong> I will be staying at [name of hotel]. I will be staying with friends/family at [address]. Yes, I have a reservation at [name of hotel].
+                        </div>
+                    </div>
+                    <div class="section-content" id="section5">
+                        <h2><span class="section-number">5. </span>Plano de Viagem</h2>
+                        <div class="keywords">
+                            <strong>Palavras-chave:</strong> plans (planos), while (enquanto), here (aqui), travel (viagem), itinerary (itinerário)
+                        </div>
+                        <div class="examples">
+                            <strong>Perguntas Comuns:</strong> What are your plans while you are here? Do you have a travel itinerary?
+                            <br>
+                            <strong>Respostas Exemplares:</strong> I plan to visit [places]. I will be sightseeing in London. Yes, I have a tour planned.
+                        </div>
+                    </div>
+                    <div class="section-content" id="section6">
+                        <h2><span class="section-number">6. </span>Detalhes do Voo</h2>
+                        <div class="keywords">
+                            <strong>Palavras-chave:</strong> return ticket (bilhete de retorno), flight (voo), arrive (chegar)
+                        </div>
+                        <div class="examples">
+                            <strong>Perguntas Comuns:</strong> Can I see your return ticket? What flight did you arrive on?
+                            <br>
+                            <strong>Respostas Exemplares:</strong> Yes, here is my return ticket. I arrived on flight [flight number] from [city/country].
+                        </div>
+                    </div>
+                    <div class="section-content" id="section7">
+                        <h2><span class="section-number">7. </span>Recursos Financeiros</h2>
+                        <div class="keywords">
+                            <strong>Palavras-chave:</strong> How much (quanto), money (dinheiro), stay (estadia), enough funds (fundos suficientes), support yourself (sustentar-se), during your stay (durante sua estadia)
+                        </div>
+                        <div class="examples">
+                            <strong>Perguntas Comuns:</strong> How much money do you have for your stay? Do you have enough funds to support yourself during your stay?
+                            <br>
+                            <strong>Respostas Exemplares:</strong> I have [amount] in cash and a credit card. Yes, I have enough funds for my stay.
+                        </div>
+                    </div>
+                    <div class="section-content" id="section8">
+                        <h2><span class="section-number">8. </span>Confirmação de Passagem de Volta</h2>
+                        <div class="keywords">
+                            <strong>Palavras-chave:</strong> return ticket (bilhete de retorno), return flight (voo de retorno), When (quando)
+                        </div>
+                        <div class="examples">
+                            <strong>Perguntas Comuns:</strong> Do you have a return ticket? When is your return flight?
+                            <br>
+                            <strong>Respostas Exemplares:</strong> Yes, I have a return ticket booked. My return flight is on [date].
+                        </div>
+                    </div>
+                    <div class="section-content" id="section9">
+                        <h2><span class="section-number">9. </span>Histórico de Viagens</h2>
+                        <div class="keywords">
+                            <strong>Palavras-chave:</strong> been (estado), UK (Reino Unido), before (antes), first visit (primeira visita)
+                        </div>
+                        <div class="examples">
+                            <strong>Perguntas Comuns:</strong> Have you been to the UK before? Is this your first visit to the UK?
+                            <br>
+                            <strong>Respostas Exemplares:</strong> Yes, I have been here before. No, this is my first visit.
+                        </div>
+                    </div>
+                    <div class="section-content" id="section10">
+                        <h2><span class="section-number">10. </span>Outras Perguntas Comuns</h2>
+                        <div class="keywords">
+                            <strong>Palavras-chave:</strong> travel insurance (seguro de viagem), know (conhece), anyone (alguém), UK (Reino Unido)
+                        </div>
+                        <div class="examples">
+                            <strong>Perguntas Comuns:</strong> Do you have travel insurance? Do you know anyone in the UK?
+                            <br>
+                            <strong>Respostas Exemplares:</strong> Yes, I have travel insurance. Yes, I have friends/family here.
+                        </div>
+                    </div>
+                </div>
+                <div class="feedback" id="feedbackMessage">Nota/Palavra-chave adicionada com sucesso!</div>
             </div>
-            <div id="content">
-                <div class="section-content" id="section1">
-                    <h2><span class="section-number">1. </span>Cumprimentos e Início da Conversa</h2>
-                    <div class="keywords">
-                        <strong>Palavras-chave:</strong> morning/afternoon/evening (manhã/tarde/noite), How are you? (Como você está?)
-                    </div>
-                    <div class="examples">
-                        <strong>Perguntas Comuns:</strong> Good morning/afternoon/evening. How are you today?
-                        <br>
-                        <strong>Respostas Exemplares:</strong> Good morning/afternoon/evening. I’m fine, thank you. How are you?
-                    </div>
-                </div>
-                <div class="section-content" id="section2">
-                    <h2><span class="section-number">2. </span>Motivo da Viagem</h2>
-                    <div class="keywords">
-                        <strong>Palavras-chave:</strong> purpose (propósito), visit (visita), business (negócios), pleasure (lazer)
-                    </div>
-                    <div class="examples">
-                        <strong>Perguntas Comuns:</strong> What is the purpose of your visit? Are you here for business or pleasure?
-                        <br>
-                        <strong>Respostas Exemplares:</strong> I am here for tourism. I am visiting friends/family. I am here for business. I will be attending a conference.
-                    </div>
-                </div>
-                <div class="section-content" id="section3">
-                    <h2><span class="section-number">3. </span>Duração da Estadia</h2>
-                    <div class="keywords">
-                        <strong>Palavras-chave:</strong> How long (quanto tempo), staying (ficando), UK (Reino Unido), When (quando), leaving (partindo)
-                    </div>
-                    <div class="examples">
-                        <strong>Perguntas Comuns:</strong> How long will you be staying in the UK? When are you leaving?
-                        <br>
-                        <strong>Respostas Exemplares:</strong> I will be staying for [number] days/weeks. I will be here for a week/two weeks/etc. I am leaving on [date].
-                    </div>
-                </div>
-                <div class="section-content" id="section4">
-                    <h2><span class="section-number">4. </span>Local de Hospedagem</h2>
-                    <div class="keywords">
-                        <strong>Palavras-chave:</strong> Where (onde), staying (ficando), reservation (reserva)
-                    </div>
-                    <div class="examples">
-                        <strong>Perguntas Comuns:</strong> Where will you be staying? Do you have a reservation?
-                        <br>
-                        <strong>Respostas Exemplares:</strong> I will be staying at [name of hotel]. I will be staying with friends/family at [address]. Yes, I have a reservation at [name of hotel].
-                    </div>
-                </div>
-                <div class="section-content" id="section5">
-                    <h2><span class="section-number">5. </span>Plano de Viagem</h2>
-                    <div class="keywords">
-                        <strong>Palavras-chave:</strong> plans (planos), while (enquanto), here (aqui), travel (viagem), itinerary (itinerário)
-                    </div>
-                    <div class="examples">
-                        <strong>Perguntas Comuns:</strong> What are your plans while you are here? Do you have a travel itinerary?
-                        <br>
-                        <strong>Respostas Exemplares:</strong> I plan to visit [places]. I will be sightseeing in London. Yes, I have a tour planned.
-                    </div>
-                </div>
-                <div class="section-content" id="section6">
-                    <h2><span class="section-number">6. </span>Detalhes do Voo</h2>
-                    <div class="keywords">
-                        <strong>Palavras-chave:</strong> return ticket (bilhete de retorno), flight (voo), arrive (chegar)
-                    </div>
-                    <div class="examples">
-                        <strong>Perguntas Comuns:</strong> Can I see your return ticket? What flight did you arrive on?
-                        <br>
-                        <strong>Respostas Exemplares:</strong> Yes, here is my return ticket. I arrived on flight [flight number] from [city/country].
-                    </div>
-                </div>
-                <div class="section-content" id="section7">
-                    <h2><span class="section-number">7. </span>Recursos Financeiros</h2>
-                    <div class="keywords">
-                        <strong>Palavras-chave:</strong> How much (quanto), money (dinheiro), stay (estadia), enough funds (fundos suficientes), support yourself (sustentar-se), during your stay (durante sua estadia)
-                    </div>
-                    <div class="examples">
-                        <strong>Perguntas Comuns:</strong> How much money do you have for your stay? Do you have enough funds to support yourself during your stay?
-                        <br>
-                        <strong>Respostas Exemplares:</strong> I have [amount] in cash and a credit card. Yes, I have enough funds for my stay.
-                    </div>
-                </div>
-                <div class="section-content" id="section8">
-                    <h2><span class="section-number">8. </span>Confirmação de Passagem de Volta</h2>
-                    <div class="keywords">
-                        <strong>Palavras-chave:</strong> return ticket (bilhete de retorno), return flight (voo de retorno), When (quando)
-                    </div>
-                    <div class="examples">
-                        <strong>Perguntas Comuns:</strong> Do you have a return ticket? When is your return flight?
-                        <br>
-                        <strong>Respostas Exemplares:</strong> Yes, I have a return ticket booked. My return flight is on [date].
-                    </div>
-                </div>
-                <div class="section-content" id="section9">
-                    <h2><span class="section-number">9. </span>Histórico de Viagens</h2>
-                    <div class="keywords">
-                        <strong>Palavras-chave:</strong> been (estado), UK (Reino Unido), before (antes), first visit (primeira visita)
-                    </div>
-                    <div class="examples">
-                        <strong>Perguntas Comuns:</strong> Have you been to the UK before? Is this your first visit to the UK?
-                        <br>
-                        <strong>Respostas Exemplares:</strong> Yes, I have been here before. No, this is my first visit.
-                    </div>
-                </div>
-                <div class="section-content" id="section10">
-                    <h2><span class="section-number">10. </span>Outras Perguntas Comuns</h2>
-                    <div class="keywords">
-                        <strong>Palavras-chave:</strong> travel insurance (seguro de viagem), know (conhece), anyone (alguém), UK (Reino Unido)
-                    </div>
-                    <div class="examples">
-                        <strong>Perguntas Comuns:</strong> Do you have travel insurance? Do you know anyone in the UK?
-                        <br>
-                        <strong>Respostas Exemplares:</strong> Yes, I have travel insurance. Yes, I have friends/family here.
-                    </div>
-                </div>                
-            </div>
-            <div class="feedback" id="feedbackMessage">Nota/Palavra-chave adicionada com sucesso!</div>
         </div>
     </div>
 

@@ -1,20 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadNotes();
     populateSectionSelect();
-    showSection('home'); // Exibe apenas a seção inicial (home)
+    setupSmoothScroll();
+    showSection('home');
 });
 
+function setupSmoothScroll() {
+    const links = document.querySelectorAll('.sidebar a');
+    for (const link of links) {
+        link.addEventListener('click', smoothScroll);
+    }
+}
+
+function smoothScroll(event) {
+    event.preventDefault();
+    const targetId = event.currentTarget.getAttribute("href").substring(1);
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+        window.scrollTo({
+            top: targetElement.offsetTop,
+            behavior: "smooth"
+        });
+    }
+}
+
 function showSection(sectionId) {
-    // Oculta todas as seções
     const sections = document.querySelectorAll('.section, .home');
     sections.forEach(section => {
         section.classList.remove('show');
     });
 
-    // Exibe a seção especificada
     const sectionToShow = document.getElementById(sectionId);
     if (sectionToShow) {
         sectionToShow.classList.add('show');
+    }
+
+    if (sectionId === 'imigration') {
+        document.getElementById('home').style.display = 'none';
+    } else {
+        document.getElementById('home').style.display = 'block';
     }
 }
 
@@ -61,7 +85,6 @@ function createDeleteButton(parentElement, sectionNumber, value, type) {
     const deleteButton = document.createElement('i');
     deleteButton.className = 'fas fa-trash delete-button';
     deleteButton.onclick = function() {
-        console.log(`Delete button clicked: sectionNumber=${sectionNumber}, value=${value}, type=${type}`);
         parentElement.remove();
         removeNoteFromLocalStorage(sectionNumber, value, type);
     };
@@ -94,7 +117,6 @@ function saveNoteToLocalStorage(sectionNumber, value, type) {
     }
 
     localStorage.setItem(key, JSON.stringify(notes));
-    console.log(`Saved to localStorage: ${key}`, notes);
 }
 
 function removeNoteFromLocalStorage(sectionNumber, value, type) {
@@ -108,7 +130,6 @@ function removeNoteFromLocalStorage(sectionNumber, value, type) {
             notes.notes = notes.notes.filter(note => note.trim() !== value.trim());
         }
         localStorage.setItem(key, JSON.stringify(notes));
-        console.log(`Removed from localStorage: ${key}`, notes);
     }
 }
 
@@ -145,12 +166,11 @@ function loadNotes() {
             }
         }
     });
-    console.log('Notes loaded from localStorage');
 }
 
 function populateSectionSelect() {
     const sectionSelect = document.getElementById('sectionSelect');
-    sectionSelect.innerHTML = ''; // Clear existing options
+    sectionSelect.innerHTML = '';
     const sections = document.querySelectorAll('.section-content');
 
     sections.forEach(section => {
@@ -178,7 +198,6 @@ function updateDeleteButtons() {
         const value = parentElement.textContent.replace(deleteButton.textContent, '').trim();
         const type = parentElement.closest('.keywords') ? 'keyword' : 'note';
         deleteButton.onclick = function() {
-            console.log(`Delete button clicked: sectionNumber=${sectionNumber}, value=${value}, type=${type}`);
             parentElement.remove();
             removeNoteFromLocalStorage(sectionNumber, value, type);
         };
