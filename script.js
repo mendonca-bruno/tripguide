@@ -3,6 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
     populateSectionSelect();
     setupSmoothScroll();
     showSection('home');
+
+    // Adiciona evento para fechar o sidebar quando clicar fora dele
+    document.querySelector('.sidebar-backdrop').addEventListener('click', () => {
+        toggleSidebar(false);
+    });
+
+    // Ajusta a posição fixa dos ícones de menu e sumário
+    window.addEventListener('scroll', adjustFixedIcons);
 });
 
 function setupSmoothScroll() {
@@ -22,6 +30,11 @@ function smoothScroll(event) {
             behavior: "smooth"
         });
     }
+
+    // Esconde o sidebar ao clicar em um link do sumário
+    if (window.innerWidth <= 768) {
+        toggleSidebar(false);
+    }
 }
 
 function showSection(sectionId) {
@@ -37,8 +50,12 @@ function showSection(sectionId) {
 
     if (sectionId === 'imigration') {
         document.getElementById('home').style.display = 'none';
+        document.querySelector('.summary-icon').style.display = 'block';
+        document.querySelector('.menu-icon').style.display = 'block';
     } else {
         document.getElementById('home').style.display = 'block';
+        document.querySelector('.summary-icon').style.display = 'none';
+        document.querySelector('.menu-icon').style.display = 'none';
     }
 }
 
@@ -202,4 +219,30 @@ function updateDeleteButtons() {
             removeNoteFromLocalStorage(sectionNumber, value, type);
         };
     });
+}
+
+function toggleSidebar(show = true) {
+    const sidebar = document.getElementById('sidebar');
+    const backdrop = document.querySelector('.sidebar-backdrop');
+    if (show) {
+        sidebar.classList.add('show');
+        backdrop.classList.add('show');
+    } else {
+        sidebar.classList.remove('show');
+        backdrop.classList.remove('show');
+    }
+}
+
+function adjustFixedIcons() {
+    const summaryIcon = document.querySelector('.summary-icon');
+    const menuIcon = document.querySelector('.menu-icon');
+    const scrollY = window.scrollY;
+
+    if (scrollY > 0) {
+        summaryIcon.classList.add('fixed');
+        menuIcon.classList.add('fixed');
+    } else {
+        summaryIcon.classList.remove('fixed');
+        menuIcon.classList.remove('fixed');
+    }
 }

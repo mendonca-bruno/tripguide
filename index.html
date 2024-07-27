@@ -14,7 +14,8 @@
     </div>
     <div id="imigration" class="section">
         <div class="container">
-            <div class="sidebar">
+            <div class="sidebar-backdrop" onclick="toggleSidebar(false)"></div>
+            <div class="sidebar" id="sidebar">
                 <h2>Sumário</h2>
                 <ul id="summary">
                     <li><a href="#section1">Cumprimentos e Início da Conversa</a></li>
@@ -30,8 +31,13 @@
                 </ul>
             </div>
             <div class="content">
-                <div class="menu-icon" onclick="showSection('home')">
-                    <i class="fas fa-bars"></i> Menu
+                <div class="fixed-icons">
+                    <div class="summary-icon" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i> Sumário
+                    </div>
+                    <div class="menu-icon" onclick="showSection('home')">
+                        <i class="fas fa-bars"></i> Menu
+                    </div>
                 </div>
                 <h1>Imigração</h1>
                 <div class="add-note-button-container">
